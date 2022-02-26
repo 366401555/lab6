@@ -280,7 +280,7 @@ public class EmbeddedSQL {
 
    public static void Query4(EmbeddedSQL esql){
       try{
-	String query = "SELECT S.sname, MAX(C.cost) FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.cid AND S.sid = C.sid AND S.sid IN (SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Green' INTERSECT SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Red') GROUP BY S.sname,S.sid;";
+	String query = "SELECT S.sname, MAX(C.cost) FROM suppliers S, parts P, catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND S.sid IN (SELECT S.sid FROM Suppliers S, parts P, catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Green' INTERSECT SELECT S.sid FROM suppliers S, parts P, catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Red') GROUP BY S.sname,S.sid;";
 	int rowCount = esql.executeQuery(query);
 	System.out.println("total row(s): " + rowCount);
 	}catch(Exception e){
@@ -290,7 +290,7 @@ public class EmbeddedSQL {
 
    public static void Query5(EmbeddedSQL esql){
       try{
-   String query = "SELECT UNIQUE P.pname FROM Parts P, Catalog C WHERE P.pid = C.pid AND C.cost < ";
+   String query = "SELECT UNIQUE P.pname FROM parts P, catalog C WHERE P.pid = C.pid AND C.cost < ";
    System.out.print("\tEnter cost: $");
    String input = in.readLine();
    query += input;      
@@ -304,7 +304,7 @@ public class EmbeddedSQL {
 
    public static void Query6(EmbeddedSQL esql){
      try{
-   String query = "SELECT DISTINCT S.address FROM Suppliers S, Parts P, Catalog C WHERE S.sid = C.sid AND P.pid = C.pid AND p.pname = ";
+   String query = "SELECT DISTINCT S.address FROM suppliers S, parts P, catalog C WHERE S.sid = C.sid AND P.pid = C.pid AND p.pname = ";
    System.out.print("\tEnter name: $");
    String input = in.readLine();
    query += input;      

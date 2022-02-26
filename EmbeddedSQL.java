@@ -253,7 +253,7 @@ public class EmbeddedSQL {
 	String query = "SELECT S.sname,COUNT(*) FROM suppliers S, parts P, catalog C WHERE P.pid = C.pid AND S.sid = C.sid GROUP BY S.sname, S.sid;";
 	int rowCount = esql.executeQuery(query);
 	System.out.println("total row(s): " + rowCount);
- 	}catch(Exection e) {
+ 	}catch(Exception e){
 	  System.err.println (e.getMessage());
 	}
    }//end Query1
@@ -261,9 +261,9 @@ public class EmbeddedSQL {
    public static void Query2(EmbeddedSQL esql){
       try{
  	String query = "SELECT S.sname,COUNT(*) FROM suppliers S, parts P, catalog C WHERE P.pid = C.pid AND S.sid = C.sid GROUP BY S.sid HAVING COUNT(*) > 2;";
-	int rowCount = esql.exectueQuery(query);
+	int rowCount = esql.executeQuery(query);
 	System.out.println("total row(s): " + rowCount);
-	}catch(Execption e) {
+	}catch(Exception e){
 	  System.err.println (e.getMessage());
 	}
    }//end query2
@@ -271,9 +271,9 @@ public class EmbeddedSQL {
    public static void Query3(EmbeddedSQL esql){
       try{
 	String query = "SELECT S.sname, COUNT(*) FROM suppliers S, parts P, catalog C WHERE P.pid = C.pid AND C.sid = S.sid GROUP BY S.sname, S.sid HAVING EVERY (P.color = 'Green');";
-	int rowCount = esql.exectueQuery(query);
+	int rowCount = esql.executeQuery(query);
 	System.out.println("total row(s): " + rowCount);
-	}catch(Execption e) {
+	}catch(Exception e){
 	  System.err.println (e.getMessage());
 	}
    }//end Query3
@@ -281,9 +281,9 @@ public class EmbeddedSQL {
    public static void Query4(EmbeddedSQL esql){
       try{
 	String query = "SELECT S.sname, MAX(C.cost) FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.cid AND S.sid = C.sid AND S.sid IN (SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Green' INTERSECT SELECT S.sid FROM Suppliers S, Parts P, Catalog C WHERE P.pid = C.pid AND S.sid = C.sid AND P.color = 'Red') GROUP BY S.sname,S.sid;";
-	int rowCount = esql.exectureQuery(query);
+	int rowCount = esql.executeQuery(query);
 	System.out.println("total row(s): " + rowCount);
-	}catch(Exection e) {
+	}catch(Exception e){
      System.err.println (e.getMessage());
    }
    }//end Query4
@@ -295,9 +295,9 @@ public class EmbeddedSQL {
    String input = in.readLine();
    query += input;      
 
-   int rowCount = esql.exectureQuery(query);
+   int rowCount = esql.executeQuery(query);
 	System.out.println("total row(s): " + rowCount);
-   }catch(Exection e) {
+   }catch(Exception e){
       System.err.println (e.getMessage());
    }
    }//end Query5
@@ -309,9 +309,9 @@ public class EmbeddedSQL {
    String input = in.readLine();
    query += input;      
 
-   int rowCount = esql.exectureQuery(query);
+   int rowCount = esql.executeQuery(query);
    System.out.println("total row(s): " + rowCount);
-   }catch(Exection e) {
+   }catch(Exception e){
       System.err.println (e.getMessage());
    }
    }//end Query6

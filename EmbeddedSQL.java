@@ -290,7 +290,7 @@ public class EmbeddedSQL {
 
    public static void Query5(EmbeddedSQL esql){
       try{
-   String query = "SELECT UNIQUE P.pname FROM parts P, catalog C WHERE P.pid = C.pid AND C.cost < ";
+   String query = "SELECT DISTINCT P.pname FROM parts P, catalog C WHERE P.pid = C.pid AND C.cost < ";
    System.out.print("\tEnter cost: $");
    String input = in.readLine();
    query += input;      
